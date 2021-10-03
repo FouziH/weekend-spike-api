@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
+import { Dispatch } from 'react-redux'
 import DatePicker from 'react-date-picker'
 
 export default function RequestInfo() {
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
-    const [selectOption, setSelectOption] = useState('')
+    const [selectedOffense, setSelectedOffense] = useState("");
     console.log("get date is", startDate)
     console.log("end date is", endDate)
-    console.log("selected option is", selectOption)
+    console.log("selected option is", selectedOffense)
 
     const onSubmit = (event) => {
         event.preventDefault()
@@ -15,7 +16,7 @@ export default function RequestInfo() {
         const data = {
             startDate, 
             endDate,
-            selectOption
+            selectedOffense
         }
 
         console.log("data is", data)
@@ -26,7 +27,7 @@ export default function RequestInfo() {
       <div>
         <form onSubmit={onSubmit}>
           <label htmlFor="">Select Offense: </label>
-          <select onChange={(event) => setSelectOption(event.target.value)}>
+          <select onChange={(event) => setSelectedOffense(event.target.value)}>
             <option value="">Select</option>
             <option value="Aggravated-Assault">Aggravated-Assault</option>
             <option value="Burglary">Burglary</option>
