@@ -1,20 +1,30 @@
-const express = require('express')
-const bodyParser = require('body-parser');
-const { Pool } = require('pg');
+require("dotenv").config();
+const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 
-const port = 5000
+/* Route includes */
 
-/* ---------- MIDDLEWARE --------*/
+/* Body parser middleware */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
+/* Routes */
+const openDataMinneapolis = require("./routes/api-router");
+app.use("open/api/data", openDataMinneapolis);
+
+
+/* Serve static files */
 app.use(express.static("build"));
 
-/* ---------- EXPRESS ROUTER --------*/
+/* POR SET */
+const PORT = process.env.PORT || 5000;
 
-
-app.listen(port, () => {
-    console.log("live on port", port)
-})
-
+/** Listen * */
+app.listen(PORT, () => {
+  console.log(`Listening on port: ${PORT}`);
+});
